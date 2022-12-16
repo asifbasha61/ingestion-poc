@@ -11,7 +11,7 @@ jobs:
     - name: Node LTS versions
       uses: msimerson/node-lts-versions@v1.1.1
     - run: npm install --force
-    - run: npm run start
+    - run: npm start
 
     - name: Docker Login
       env: 
