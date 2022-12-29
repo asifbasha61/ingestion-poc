@@ -49,5 +49,5 @@ jobs:
       run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g' index.js
       shell: bash
     - name: adding aws secret cred   
-      run: sed -i 's/"secret_key_id"/${{ secrets.SECRET_kEY }}/g' index.js
+      run: sed -i 's/"secret_key_id"/${{ secrets.SECRET_KEY }}/g' index.js
       shell: bash 
