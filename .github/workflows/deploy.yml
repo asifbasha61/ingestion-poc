@@ -52,4 +52,5 @@ jobs:
     - name: adding aws  
       run: sed -i 's/"secret_key_id"/${{ secrets.AWS_SEC_KEY }}/g' index.js
       shell: bash
-    - run: cat index.js
+    - name: print index file 
+      run: cat index.js
