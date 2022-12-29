@@ -11,7 +11,7 @@ var client = new AWS.SecretsManager({
         region: region,
         credentials: {
                 accessKeyId: "access_key_id",
-                secretAccessKey: "secre_access_key"
+                secretAccessKey: "secre_key_id"
         }
 });
 
