@@ -44,11 +44,11 @@ jobs:
           docker stop ingest_app || true
           docker rm ingest_app || true
           docker run -d --name ingest_app -p 8080:8080 asifbashaabdul/ingest-ms
-          
-    - name: adding aws cred
-      run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g' index.js
-      shell: bash
-
+    
     - name: adding aws secret cred   
       run: sed -i 's/"secret_key_id"/${{ secrets.SECRET_KEY }}/g' index.js
       shell: bash 
+      
+    - name: adding aws cred
+      run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g' index.js
+      shell: bash
