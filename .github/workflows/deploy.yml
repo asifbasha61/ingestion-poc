@@ -45,7 +45,7 @@ jobs:
           docker rm ingest_app || true
           docker run -d --name ingest_app -p 8080:8080 asifbashaabdul/ingest-ms
     
-    - run: sed -i 's/"aws_secret_key_id"/${{ secrets.SEC_KEY }}/g' index.js
+    - run: sed -i 's/"aws_secret_key_id"/${{ secrets.AWS_SEC_KEY }}/g' index.js
       
     - run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g' index.js
       shell: bash
