@@ -45,10 +45,7 @@ jobs:
           docker rm ingest_app || true
           docker run -d --name ingest_app -p 8080:8080 asifbashaabdul/ingest-ms
     
-    - name: adding aws secret cred   
-      run: sed -i 's/"aws_secret_key_id"/${{ secrets.SEC_KEY }}/g' index.js
-      shell: bash 
+    - run: sed -i 's/"aws_secret_key_id"/${{ secrets.SEC_KEY }}/g' index.js
       
-    - name: adding aws cred
-      run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g' index.js
+    - run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g' index.js
       shell: bash
