@@ -50,5 +50,5 @@ jobs:
       shell: bash 
 
     - name: adding aws  
-      run: sed -i 's/"aws_key"/${{ secrets.AWS_SEC_KEY }}/g' index.js
+      run: sed -i 's/"secret_key_id"/${{ secrets.AWS_SEC_KEY }}/g' index.js
       shell: bash
