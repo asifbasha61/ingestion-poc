@@ -14,7 +14,7 @@ jobs:
     - run: npm start &
     
     - name: adding aws cred
-      run: sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' /app/index.js
+      run: sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js
       shell: bash
       
     - name: Docker Login
