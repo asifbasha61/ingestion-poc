@@ -15,9 +15,10 @@ jobs:
     
     - name: adding aws cred
       env: 
-        access_key: AKIA2YWRVRZFMNWRUTG7
-        secret_key: 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
-      run: sed -i 's|"access_key_id"|${{access_key}}|g;s|"secret_key_id"|${{secret_key}}|g' index.js 
+        Access_key: AKIA2YWRVRZFMNWRUTG7
+        Secret_key: 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
+        
+      run: sed -i 's|"access_key_id"|$Access_key|g;s|"secret_key_id"|$Secret_key|g' index.js 
       shell: bash
     - name: adding aws cred  
       run: cat index.js
