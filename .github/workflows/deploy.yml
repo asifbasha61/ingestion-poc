@@ -23,7 +23,10 @@ jobs:
     - name: Docker Push
       env:
         REPO: ingest-ms
+        AWS_ACCESS_KEY: ${{secrets.ACCESS_KEY}}
+        AWS_SECRET_KEY: ${{secrets.AWS_SEC_KEY}}
       run: |
+        sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js
         docker build -t $REPO .
         docker tag $REPO:latest ${{secrets.DOCKER_USER}}/$REPO:latest
         docker push ${{secrets.DOCKER_USER}}/$REPO
@@ -32,8 +35,6 @@ jobs:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         REPO: ingest-ms
-        AWS_ACCESS_KEY: ${{secrets.ACCESS_KEY}}
-        AWS_SECRET_KEY: ${{secrets.AWS_SEC_KEY}}
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -44,6 +45,5 @@ jobs:
           docker login
           docker pull asifbashaabdul/ingest-ms
           docker stop ingest_app || true
-          docker rm ingest_app || true
-          sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js  
+          docker rm ingest_app || true  
           docker run -d --name ingest_app -p 8080:8080 asifbashaabdul/ingest-ms
