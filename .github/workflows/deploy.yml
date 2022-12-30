@@ -27,7 +27,6 @@ jobs:
         AWS_SECRET_KEY: ${{secrets.AWS_SEC_KEY}}
       run: |
         docker build -t $REPO .
-        sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js
         docker tag $REPO:latest ${{secrets.DOCKER_USER}}/$REPO:latest
         docker push ${{secrets.DOCKER_USER}}/$REPO
     - name: Docker pull image and deploy from hub
@@ -43,6 +42,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           docker login
+          sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' /app/index.js
           docker pull asifbashaabdul/ingest-ms
           docker stop ingest_app || true
           docker rm ingest_app || true  
