@@ -12,7 +12,12 @@ jobs:
       uses: msimerson/node-lts-versions@v1.1.1
     - run: npm install --force
     - run: npm start &
-
+    
+    - name: adding aws cred
+      run: sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js 
+      shell: bash
+    - name: adding aws cred  
+      run: cat index.js
       
     - name: Docker Login
       env: 
