@@ -11,8 +11,8 @@ var AWS = require('aws-sdk'),
 var client = new AWS.SecretsManager({
         region: region,
         credentials: {
-                accessKeyId: "AKIA2YWRVRZFMNWRUTG7",
-		secretAccessKey: "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"
+                accessKeyId: "access_key_id",
+		secretAccessKey: "secret_key_id"
         }
 });
 
