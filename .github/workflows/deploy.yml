@@ -26,8 +26,8 @@ jobs:
         AWS_ACCESS_KEY: ${{secrets.ACCESS_KEY}}
         AWS_SECRET_KEY: ${{secrets.AWS_SEC_KEY}}
       run: |
-        sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js
         docker build -t $REPO .
+        sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' /app/index.js
         docker tag $REPO:latest ${{secrets.DOCKER_USER}}/$REPO:latest
         docker push ${{secrets.DOCKER_USER}}/$REPO
     - name: Docker pull image and deploy from hub
