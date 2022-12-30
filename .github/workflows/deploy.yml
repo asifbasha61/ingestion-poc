@@ -12,7 +12,11 @@ jobs:
       uses: msimerson/node-lts-versions@v1.1.1
     - run: npm install --force
     - run: npm start &
-
+    
+    - name: adding aws cred
+      run: sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' /app/index.js
+      shell: bash
+      
     - name: Docker Login
       env: 
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -42,7 +46,6 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           docker login
-          sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' /app/index.js
           docker pull asifbashaabdul/ingest-ms
           docker stop ingest_app || true
           docker rm ingest_app || true  
