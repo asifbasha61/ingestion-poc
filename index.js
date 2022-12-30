@@ -1,3 +1,4 @@
+const dotenv = require("dotenv");
 dotenv.config();
 
 var AWS = require('aws-sdk'),
@@ -44,7 +45,7 @@ async function loadSecrets(client) {
                 }
         }).promise()
 }
-loadSecrets(client).then(_ => { require('./bin/www')})
+loadSecrets(client).then(_ => { require('./src/bin/www')})
         .catch(err => {
                 console.error(err); process.exit(0);
         })
