@@ -20,7 +20,7 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: adding aws secret cred
-      run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g;s/"secret_key_id`"/${{ secrets.AWS_SEC_KEY }}/g' index.js
+      run: sed -i 's/"access_key_id"/${{ secrets.ACCESS_KEY }}/g;s/"secret_key_id"/${{ secrets.AWS_SEC_KEY }}/g' index.js
       shell: bash
     - name: print index file
       run: cat index.js    
