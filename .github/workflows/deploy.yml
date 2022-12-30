@@ -17,11 +17,13 @@ jobs:
       env: 
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        AWS_ACCESS_KEY: ${{secrets.ACCESS_KEY}}
+        AWS_SECRET_KEY: ${{secrets.AWS_SEC_KEY}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
     - name: adding aws cred
-      run: sed -i 's|"access_key_id"|${{ secrets.ACCESS_KEY }}|g;s|"secret_key_id"|${{ secrets.AWS_SEC_KEY }}|g' index.js
+      run: sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js
       shell: bash
         
     - name: Docker Push
