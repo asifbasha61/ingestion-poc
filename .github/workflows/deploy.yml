@@ -45,5 +45,5 @@ jobs:
           docker pull asifbashaabdul/ingest-ms
           docker stop ingest_app || true
           docker rm ingest_app || true
-          sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' /app/index.js  
+          sed -i 's|"access_key_id"|${{secrets.ACCESS_KEY}}|g;s|"secret_key_id"|${{secrets.AWS_SEC_KEY}}|g' index.js  
           docker run -d --name ingest_app -p 8080:8080 asifbashaabdul/ingest-ms
